@@ -1,0 +1,607 @@
+
+type token = 
+  | XOR
+  | VAR
+  | SLICE
+  | SELECT
+  | ROM
+  | REG
+  | RAM
+  | OUTPUT
+  | OR
+  | NOT
+  | NAND
+  | NAME of (
+# 27 "netlist_parser.mly"
+       (string)
+# 18 "netlist_parser__mock.ml.mock"
+)
+  | MUX
+  | INPUT
+  | IN
+  | EQUAL
+  | EOF
+  | CONST of (
+# 26 "netlist_parser.mly"
+       (string)
+# 28 "netlist_parser__mock.ml.mock"
+)
+  | CONCAT
+  | COMMA
+  | COLON
+  | AND
+
+# 1 "netlist_parser.mly"
+  
+ open Netlist_ast
+
+ let bool_of_string s = match s with
+  | "t" | "1" -> true
+  | "f" | "0" -> false
+  | _ -> raise Parsing.Parse_error
+
+ let bool_array_of_string s =
+   let a = Array.make (String.length s) false in
+   for i = 0 to String.length s - 1 do
+     a.(i) <- bool_of_string (String.sub s i 1)
+   done;
+   a
+
+ let value_of_const s =
+   let n = String.length s in
+   if n = 0 then
+     raise Parsing.Parse_error
+   else if n = 1 then
+     VBit (bool_of_string s)
+   else
+     VBitArray (bool_array_of_string s)
+
+# 60 "netlist_parser__mock.ml.mock"
+
+let menhir_begin_marker =
+  0
+
+and (xv_var, xv_ty_exp, xv_separated_nonempty_list_COMMA_var_, xv_separated_nonempty_list_COMMA_NAME_, xv_separated_list_COMMA_var_, xv_separated_list_COMMA_NAME_, xv_program, xv_loption_separated_nonempty_list_COMMA_var__, xv_loption_separated_nonempty_list_COMMA_NAME__, xv_list_equ_, xv_int, xv_exp, xv_equ, xv_arg) =
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 242 "<standard.mly>"
+                    xs
+# 69 "netlist_parser__mock.ml.mock"
+   : 'tv_separated_nonempty_list_COMMA_var_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 242 "<standard.mly>"
+        _2
+# 73 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 242 "<standard.mly>"
+  x
+# 77 "netlist_parser__mock.ml.mock"
+   : 'tv_var) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) ->
+    (
+# 243 "<standard.mly>"
+    ( x :: xs )
+# 82 "netlist_parser__mock.ml.mock"
+     : 'tv_separated_nonempty_list_COMMA_var_) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 240 "<standard.mly>"
+  x
+# 87 "netlist_parser__mock.ml.mock"
+   : 'tv_var) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) ->
+    (
+# 241 "<standard.mly>"
+    ( [ x ] )
+# 92 "netlist_parser__mock.ml.mock"
+     : 'tv_separated_nonempty_list_COMMA_var_) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 242 "<standard.mly>"
+                    xs
+# 97 "netlist_parser__mock.ml.mock"
+   : 'tv_separated_nonempty_list_COMMA_NAME_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 242 "<standard.mly>"
+        _2
+# 101 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 242 "<standard.mly>"
+  x
+# 105 "netlist_parser__mock.ml.mock"
+   : (
+# 27 "netlist_parser.mly"
+       (string)
+# 109 "netlist_parser__mock.ml.mock"
+  )) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) ->
+    (
+# 243 "<standard.mly>"
+    ( x :: xs )
+# 114 "netlist_parser__mock.ml.mock"
+     : 'tv_separated_nonempty_list_COMMA_NAME_) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 240 "<standard.mly>"
+  x
+# 119 "netlist_parser__mock.ml.mock"
+   : (
+# 27 "netlist_parser.mly"
+       (string)
+# 123 "netlist_parser__mock.ml.mock"
+  )) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) ->
+    (
+# 241 "<standard.mly>"
+    ( [ x ] )
+# 128 "netlist_parser__mock.ml.mock"
+     : 'tv_separated_nonempty_list_COMMA_NAME_) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 231 "<standard.mly>"
+  xs
+# 133 "netlist_parser__mock.ml.mock"
+   : 'tv_loption_separated_nonempty_list_COMMA_var__) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) ->
+    (
+# 232 "<standard.mly>"
+    ( xs )
+# 138 "netlist_parser__mock.ml.mock"
+     : 'tv_separated_list_COMMA_var_) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 231 "<standard.mly>"
+  xs
+# 143 "netlist_parser__mock.ml.mock"
+   : 'tv_loption_separated_nonempty_list_COMMA_NAME__) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) ->
+    (
+# 232 "<standard.mly>"
+    ( xs )
+# 148 "netlist_parser__mock.ml.mock"
+     : 'tv_separated_list_COMMA_NAME_) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 143 "<standard.mly>"
+  x
+# 153 "netlist_parser__mock.ml.mock"
+   : 'tv_separated_nonempty_list_COMMA_var_) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) ->
+    (
+# 144 "<standard.mly>"
+    ( x )
+# 158 "netlist_parser__mock.ml.mock"
+     : 'tv_loption_separated_nonempty_list_COMMA_var__) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) ->
+    (
+# 142 "<standard.mly>"
+    ( [] )
+# 164 "netlist_parser__mock.ml.mock"
+     : 'tv_loption_separated_nonempty_list_COMMA_var__) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 143 "<standard.mly>"
+  x
+# 169 "netlist_parser__mock.ml.mock"
+   : 'tv_separated_nonempty_list_COMMA_NAME_) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) ->
+    (
+# 144 "<standard.mly>"
+    ( x )
+# 174 "netlist_parser__mock.ml.mock"
+     : 'tv_loption_separated_nonempty_list_COMMA_NAME__) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) ->
+    (
+# 142 "<standard.mly>"
+    ( [] )
+# 180 "netlist_parser__mock.ml.mock"
+     : 'tv_loption_separated_nonempty_list_COMMA_NAME__) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 212 "<standard.mly>"
+         xs
+# 185 "netlist_parser__mock.ml.mock"
+   : 'tv_list_equ_) (_startpos_xs_ : Lexing.position) (_endpos_xs_ : Lexing.position) (_startofs_xs_ : int) (_endofs_xs_ : int) (_loc_xs_ : Lexing.position * Lexing.position) (
+# 212 "<standard.mly>"
+  x
+# 189 "netlist_parser__mock.ml.mock"
+   : 'tv_equ) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) ->
+    (
+# 213 "<standard.mly>"
+    ( x :: xs )
+# 194 "netlist_parser__mock.ml.mock"
+     : 'tv_list_equ_) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) ->
+    (
+# 211 "<standard.mly>"
+    ( [] )
+# 200 "netlist_parser__mock.ml.mock"
+     : 'tv_list_equ_) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 70 "netlist_parser.mly"
+            ty
+# 205 "netlist_parser__mock.ml.mock"
+   : 'tv_ty_exp) (_startpos_ty_ : Lexing.position) (_endpos_ty_ : Lexing.position) (_startofs_ty_ : int) (_endofs_ty_ : int) (_loc_ty_ : Lexing.position * Lexing.position) (
+# 70 "netlist_parser.mly"
+     x
+# 209 "netlist_parser__mock.ml.mock"
+   : (
+# 27 "netlist_parser.mly"
+       (string)
+# 213 "netlist_parser__mock.ml.mock"
+  )) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) ->
+    (
+# 70 "netlist_parser.mly"
+                      ( (x, ty) )
+# 218 "netlist_parser__mock.ml.mock"
+     : 'tv_var) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 73 "netlist_parser.mly"
+          n
+# 223 "netlist_parser__mock.ml.mock"
+   : 'tv_int) (_startpos_n_ : Lexing.position) (_endpos_n_ : Lexing.position) (_startofs_n_ : int) (_endofs_n_ : int) (_loc_n_ : Lexing.position * Lexing.position) (
+# 73 "netlist_parser.mly"
+   _1
+# 227 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 73 "netlist_parser.mly"
+                ( TBitArray n )
+# 232 "netlist_parser__mock.ml.mock"
+     : 'tv_ty_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) ->
+    (
+# 72 "netlist_parser.mly"
+              ( TBit )
+# 238 "netlist_parser__mock.ml.mock"
+     : 'tv_ty_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 40 "netlist_parser.mly"
+                                                        _9
+# 243 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__9_ : Lexing.position) (_endpos__9_ : Lexing.position) (_startofs__9_ : int) (_endofs__9_ : int) (_loc__9_ : Lexing.position * Lexing.position) (
+# 40 "netlist_parser.mly"
+                                           eqs
+# 247 "netlist_parser__mock.ml.mock"
+   : 'tv_list_equ_) (_startpos_eqs_ : Lexing.position) (_endpos_eqs_ : Lexing.position) (_startofs_eqs_ : int) (_endofs_eqs_ : int) (_loc_eqs_ : Lexing.position * Lexing.position) (
+# 40 "netlist_parser.mly"
+                                       _7
+# 251 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__7_ : Lexing.position) (_endpos__7_ : Lexing.position) (_startofs__7_ : int) (_endofs__7_ : int) (_loc__7_ : Lexing.position * Lexing.position) (
+# 40 "netlist_parser.mly"
+        vars
+# 255 "netlist_parser__mock.ml.mock"
+   : 'tv_separated_list_COMMA_var_) (_startpos_vars_ : Lexing.position) (_endpos_vars_ : Lexing.position) (_startofs_vars_ : int) (_endofs_vars_ : int) (_loc_vars_ : Lexing.position * Lexing.position) (
+# 39 "netlist_parser.mly"
+                                          _5
+# 260 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__5_ : Lexing.position) (_endpos__5_ : Lexing.position) (_startofs__5_ : int) (_endofs__5_ : int) (_loc__5_ : Lexing.position * Lexing.position) (
+# 39 "netlist_parser.mly"
+           out
+# 264 "netlist_parser__mock.ml.mock"
+   : 'tv_separated_list_COMMA_NAME_) (_startpos_out_ : Lexing.position) (_endpos_out_ : Lexing.position) (_startofs_out_ : int) (_endofs_out_ : int) (_loc_out_ : Lexing.position * Lexing.position) (
+# 38 "netlist_parser.mly"
+                                       _3
+# 269 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__3_ : Lexing.position) (_endpos__3_ : Lexing.position) (_startofs__3_ : int) (_endofs__3_ : int) (_loc__3_ : Lexing.position * Lexing.position) (
+# 38 "netlist_parser.mly"
+        inp
+# 273 "netlist_parser__mock.ml.mock"
+   : 'tv_separated_list_COMMA_NAME_) (_startpos_inp_ : Lexing.position) (_endpos_inp_ : Lexing.position) (_startofs_inp_ : int) (_endofs_inp_ : int) (_loc_inp_ : Lexing.position * Lexing.position) (
+# 37 "netlist_parser.mly"
+        _1
+# 278 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    ((
+# 41 "netlist_parser.mly"
+    ( { p_eqs = eqs; p_vars = Env.of_list vars; p_inputs = inp; p_outputs = out; } )
+# 283 "netlist_parser__mock.ml.mock"
+     : 'tv_program) : (
+# 34 "netlist_parser.mly"
+      (Netlist_ast.program)
+# 287 "netlist_parser__mock.ml.mock"
+    )) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 76 "netlist_parser.mly"
+    c
+# 292 "netlist_parser__mock.ml.mock"
+   : (
+# 26 "netlist_parser.mly"
+       (string)
+# 296 "netlist_parser__mock.ml.mock"
+  )) (_startpos_c_ : Lexing.position) (_endpos_c_ : Lexing.position) (_startofs_c_ : int) (_endofs_c_ : int) (_loc_c_ : Lexing.position * Lexing.position) ->
+    (
+# 76 "netlist_parser.mly"
+            ( int_of_string c )
+# 301 "netlist_parser__mock.ml.mock"
+     : 'tv_int) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 63 "netlist_parser.mly"
+                          x
+# 306 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 63 "netlist_parser.mly"
+                  max
+# 310 "netlist_parser__mock.ml.mock"
+   : 'tv_int) (_startpos_max_ : Lexing.position) (_endpos_max_ : Lexing.position) (_startofs_max_ : int) (_endofs_max_ : int) (_loc_max_ : Lexing.position * Lexing.position) (
+# 63 "netlist_parser.mly"
+          min
+# 314 "netlist_parser__mock.ml.mock"
+   : 'tv_int) (_startpos_min_ : Lexing.position) (_endpos_min_ : Lexing.position) (_startofs_min_ : int) (_endofs_min_ : int) (_loc_min_ : Lexing.position * Lexing.position) (
+# 63 "netlist_parser.mly"
+   _1
+# 318 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 64 "netlist_parser.mly"
+     ( Eslice (min, max, x) )
+# 323 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 61 "netlist_parser.mly"
+                   x
+# 328 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 61 "netlist_parser.mly"
+           idx
+# 332 "netlist_parser__mock.ml.mock"
+   : 'tv_int) (_startpos_idx_ : Lexing.position) (_endpos_idx_ : Lexing.position) (_startofs_idx_ : int) (_endofs_idx_ : int) (_loc_idx_ : Lexing.position * Lexing.position) (
+# 61 "netlist_parser.mly"
+   _1
+# 336 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 62 "netlist_parser.mly"
+     ( Eselect (idx, x) )
+# 341 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 59 "netlist_parser.mly"
+                 y
+# 346 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_y_ : Lexing.position) (_endpos_y_ : Lexing.position) (_startofs_y_ : int) (_endofs_y_ : int) (_loc_y_ : Lexing.position * Lexing.position) (
+# 59 "netlist_parser.mly"
+           x
+# 350 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 59 "netlist_parser.mly"
+   _1
+# 354 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 60 "netlist_parser.mly"
+     ( Econcat(x, y) )
+# 359 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 57 "netlist_parser.mly"
+                                               data
+# 364 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_data_ : Lexing.position) (_endpos_data_ : Lexing.position) (_startofs_data_ : int) (_endofs_data_ : int) (_loc_data_ : Lexing.position * Lexing.position) (
+# 57 "netlist_parser.mly"
+                                        wa
+# 368 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_wa_ : Lexing.position) (_endpos_wa_ : Lexing.position) (_startofs_wa_ : int) (_endofs_wa_ : int) (_loc_wa_ : Lexing.position * Lexing.position) (
+# 57 "netlist_parser.mly"
+                                 we
+# 372 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_we_ : Lexing.position) (_endpos_we_ : Lexing.position) (_startofs_we_ : int) (_endofs_we_ : int) (_loc_we_ : Lexing.position * Lexing.position) (
+# 57 "netlist_parser.mly"
+                          ra
+# 376 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_ra_ : Lexing.position) (_endpos_ra_ : Lexing.position) (_startofs_ra_ : int) (_endofs_ra_ : int) (_loc_ra_ : Lexing.position * Lexing.position) (
+# 57 "netlist_parser.mly"
+                 word
+# 380 "netlist_parser__mock.ml.mock"
+   : 'tv_int) (_startpos_word_ : Lexing.position) (_endpos_word_ : Lexing.position) (_startofs_word_ : int) (_endofs_word_ : int) (_loc_word_ : Lexing.position * Lexing.position) (
+# 57 "netlist_parser.mly"
+        addr
+# 384 "netlist_parser__mock.ml.mock"
+   : 'tv_int) (_startpos_addr_ : Lexing.position) (_endpos_addr_ : Lexing.position) (_startofs_addr_ : int) (_endofs_addr_ : int) (_loc_addr_ : Lexing.position * Lexing.position) (
+# 57 "netlist_parser.mly"
+   _1
+# 388 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 58 "netlist_parser.mly"
+    ( Eram(addr, word, ra, we, wa, data) )
+# 393 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 55 "netlist_parser.mly"
+                          ra
+# 398 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_ra_ : Lexing.position) (_endpos_ra_ : Lexing.position) (_startofs_ra_ : int) (_endofs_ra_ : int) (_loc_ra_ : Lexing.position * Lexing.position) (
+# 55 "netlist_parser.mly"
+                 word
+# 402 "netlist_parser__mock.ml.mock"
+   : 'tv_int) (_startpos_word_ : Lexing.position) (_endpos_word_ : Lexing.position) (_startofs_word_ : int) (_endofs_word_ : int) (_loc_word_ : Lexing.position * Lexing.position) (
+# 55 "netlist_parser.mly"
+        addr
+# 406 "netlist_parser__mock.ml.mock"
+   : 'tv_int) (_startpos_addr_ : Lexing.position) (_endpos_addr_ : Lexing.position) (_startofs_addr_ : int) (_endofs_addr_ : int) (_loc_addr_ : Lexing.position * Lexing.position) (
+# 55 "netlist_parser.mly"
+   _1
+# 410 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 56 "netlist_parser.mly"
+    ( Erom(addr, word, ra) )
+# 415 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 54 "netlist_parser.mly"
+                    z
+# 420 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_z_ : Lexing.position) (_endpos_z_ : Lexing.position) (_startofs_z_ : int) (_endofs_z_ : int) (_loc_z_ : Lexing.position * Lexing.position) (
+# 54 "netlist_parser.mly"
+              y
+# 424 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_y_ : Lexing.position) (_endpos_y_ : Lexing.position) (_startofs_y_ : int) (_endofs_y_ : int) (_loc_y_ : Lexing.position * Lexing.position) (
+# 54 "netlist_parser.mly"
+        x
+# 428 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 54 "netlist_parser.mly"
+   _1
+# 432 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 54 "netlist_parser.mly"
+                          ( Emux(x, y, z) )
+# 437 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 53 "netlist_parser.mly"
+              y
+# 442 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_y_ : Lexing.position) (_endpos_y_ : Lexing.position) (_startofs_y_ : int) (_endofs_y_ : int) (_loc_y_ : Lexing.position * Lexing.position) (
+# 53 "netlist_parser.mly"
+        x
+# 446 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 53 "netlist_parser.mly"
+   _1
+# 450 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 53 "netlist_parser.mly"
+                    ( Ebinop(Xor, x, y) )
+# 455 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 52 "netlist_parser.mly"
+               y
+# 460 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_y_ : Lexing.position) (_endpos_y_ : Lexing.position) (_startofs_y_ : int) (_endofs_y_ : int) (_loc_y_ : Lexing.position * Lexing.position) (
+# 52 "netlist_parser.mly"
+         x
+# 464 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 52 "netlist_parser.mly"
+   _1
+# 468 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 52 "netlist_parser.mly"
+                     ( Ebinop(Nand, x, y) )
+# 473 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 51 "netlist_parser.mly"
+             y
+# 478 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_y_ : Lexing.position) (_endpos_y_ : Lexing.position) (_startofs_y_ : int) (_endofs_y_ : int) (_loc_y_ : Lexing.position * Lexing.position) (
+# 51 "netlist_parser.mly"
+       x
+# 482 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 51 "netlist_parser.mly"
+   _1
+# 486 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 51 "netlist_parser.mly"
+                   ( Ebinop(Or, x, y) )
+# 491 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 50 "netlist_parser.mly"
+              y
+# 496 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_y_ : Lexing.position) (_endpos_y_ : Lexing.position) (_startofs_y_ : int) (_endofs_y_ : int) (_loc_y_ : Lexing.position * Lexing.position) (
+# 50 "netlist_parser.mly"
+        x
+# 500 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 50 "netlist_parser.mly"
+   _1
+# 504 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 50 "netlist_parser.mly"
+                    ( Ebinop(And, x, y) )
+# 509 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 49 "netlist_parser.mly"
+        x
+# 514 "netlist_parser__mock.ml.mock"
+   : (
+# 27 "netlist_parser.mly"
+       (string)
+# 518 "netlist_parser__mock.ml.mock"
+  )) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 49 "netlist_parser.mly"
+   _1
+# 522 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 49 "netlist_parser.mly"
+               ( Ereg x )
+# 527 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 48 "netlist_parser.mly"
+        x
+# 532 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) (
+# 48 "netlist_parser.mly"
+   _1
+# 536 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__1_ : Lexing.position) (_endpos__1_ : Lexing.position) (_startofs__1_ : int) (_endofs__1_ : int) (_loc__1_ : Lexing.position * Lexing.position) ->
+    (
+# 48 "netlist_parser.mly"
+              ( Enot x )
+# 541 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 47 "netlist_parser.mly"
+    a
+# 546 "netlist_parser__mock.ml.mock"
+   : 'tv_arg) (_startpos_a_ : Lexing.position) (_endpos_a_ : Lexing.position) (_startofs_a_ : int) (_endofs_a_ : int) (_loc_a_ : Lexing.position * Lexing.position) ->
+    (
+# 47 "netlist_parser.mly"
+          ( Earg a )
+# 551 "netlist_parser__mock.ml.mock"
+     : 'tv_exp) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 44 "netlist_parser.mly"
+               e
+# 556 "netlist_parser__mock.ml.mock"
+   : 'tv_exp) (_startpos_e_ : Lexing.position) (_endpos_e_ : Lexing.position) (_startofs_e_ : int) (_endofs_e_ : int) (_loc_e_ : Lexing.position * Lexing.position) (
+# 44 "netlist_parser.mly"
+        _2
+# 560 "netlist_parser__mock.ml.mock"
+   : unit) (_startpos__2_ : Lexing.position) (_endpos__2_ : Lexing.position) (_startofs__2_ : int) (_endofs__2_ : int) (_loc__2_ : Lexing.position * Lexing.position) (
+# 44 "netlist_parser.mly"
+  x
+# 564 "netlist_parser__mock.ml.mock"
+   : (
+# 27 "netlist_parser.mly"
+       (string)
+# 568 "netlist_parser__mock.ml.mock"
+  )) (_startpos_x_ : Lexing.position) (_endpos_x_ : Lexing.position) (_startofs_x_ : int) (_endofs_x_ : int) (_loc_x_ : Lexing.position * Lexing.position) ->
+    (
+# 44 "netlist_parser.mly"
+                     ( (x, e) )
+# 573 "netlist_parser__mock.ml.mock"
+     : 'tv_equ) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 68 "netlist_parser.mly"
+    id
+# 578 "netlist_parser__mock.ml.mock"
+   : (
+# 27 "netlist_parser.mly"
+       (string)
+# 582 "netlist_parser__mock.ml.mock"
+  )) (_startpos_id_ : Lexing.position) (_endpos_id_ : Lexing.position) (_startofs_id_ : int) (_endofs_id_ : int) (_loc_id_ : Lexing.position * Lexing.position) ->
+    (
+# 68 "netlist_parser.mly"
+            ( Avar id )
+# 587 "netlist_parser__mock.ml.mock"
+     : 'tv_arg) in
+  let _ = fun (_eRR : exn) (_startpos : Lexing.position) (_endpos : Lexing.position) (_endpos__0_ : Lexing.position) (_symbolstartpos : Lexing.position) (_startofs : int) (_endofs : int) (_endofs__0_ : int) (_symbolstartofs : int) (_sloc : Lexing.position * Lexing.position) (_loc : Lexing.position * Lexing.position) (
+# 67 "netlist_parser.mly"
+    n
+# 592 "netlist_parser__mock.ml.mock"
+   : (
+# 26 "netlist_parser.mly"
+       (string)
+# 596 "netlist_parser__mock.ml.mock"
+  )) (_startpos_n_ : Lexing.position) (_endpos_n_ : Lexing.position) (_startofs_n_ : int) (_endofs_n_ : int) (_loc_n_ : Lexing.position * Lexing.position) ->
+    (
+# 67 "netlist_parser.mly"
+            ( Aconst (value_of_const n) )
+# 601 "netlist_parser__mock.ml.mock"
+     : 'tv_arg) in
+  (raise Not_found : 'tv_var * 'tv_ty_exp * 'tv_separated_nonempty_list_COMMA_var_ * 'tv_separated_nonempty_list_COMMA_NAME_ * 'tv_separated_list_COMMA_var_ * 'tv_separated_list_COMMA_NAME_ * 'tv_program * 'tv_loption_separated_nonempty_list_COMMA_var__ * 'tv_loption_separated_nonempty_list_COMMA_NAME__ * 'tv_list_equ_ * 'tv_int * 'tv_exp * 'tv_equ * 'tv_arg)
+
+and menhir_end_marker =
+  0
+
+# 269 "<standard.mly>"
+  
+
+# 611 "netlist_parser__mock.ml.mock"

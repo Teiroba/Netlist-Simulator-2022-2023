@@ -1,0 +1,43 @@
+type token =
+    XOR
+  | VAR
+  | SLICE
+  | SELECT
+  | ROM
+  | REG
+  | RAM
+  | OUTPUT
+  | OR
+  | NOT
+  | NAND
+  | NAME of string
+  | MUX
+  | INPUT
+  | IN
+  | EQUAL
+  | EOF
+  | CONST of string
+  | CONCAT
+  | COMMA
+  | COLON
+  | AND
+val bool_of_string : string -> bool
+val bool_array_of_string : string -> bool array
+val value_of_const : string -> Netlist_ast.value
+val menhir_begin_marker : int
+val xv_var : string * Netlist_ast.ty
+val xv_ty_exp : Netlist_ast.ty
+val xv_separated_nonempty_list_COMMA_var_ : (string * Netlist_ast.ty) list
+val xv_separated_nonempty_list_COMMA_NAME_ : string list
+val xv_separated_list_COMMA_var_ : (string * Netlist_ast.ty) list
+val xv_separated_list_COMMA_NAME_ : string list
+val xv_program : Netlist_ast.program
+val xv_loption_separated_nonempty_list_COMMA_var__ :
+  (string * Netlist_ast.ty) list
+val xv_loption_separated_nonempty_list_COMMA_NAME__ : string list
+val xv_list_equ_ : Netlist_ast.equation list
+val xv_int : int
+val xv_exp : Netlist_ast.exp
+val xv_equ : Netlist_ast.equation
+val xv_arg : Netlist_ast.arg
+val menhir_end_marker : int
