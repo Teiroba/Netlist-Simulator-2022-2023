@@ -46,9 +46,10 @@ b ? 101
 The simulator will return errors (and exit) in the following cases :  
 - The netlist is parsed incorrectly : Always.
 - The netlist has a combinatory cycle : Always.  
+- Incorrect variable use (e.g. selecting element 3 in a 2-length array, trying to read or write to an adress which hasn't got the right size...) : Always.
 - The ROM has incorrect syntax : After being prompted for the ROM.  
 - The input for a variable is incorrect : After being prompted for that input. Instead of exiting, the simulator will ask again.  
-- Incorrect variable use (e.g. selecting element 3 in a 2-length array, trying to read or write to an adress which hasn't got the right size...) : If the instruction should be prompted.  
+
 
 
 
