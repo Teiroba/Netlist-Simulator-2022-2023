@@ -10,7 +10,7 @@ Make sure to execute the following command to compile the simulator (before runn
 ## Running the simulator :
 
 To run the simulator, execute the following command :
-> ./netlist_simulator.byte [file] [flags]
+> ./netlist_simulator.byte [flags] [file]
 
 ### Flags :
 - > -n [integer]  : The simulator will run for [integer] cycles. If the flag isn't specified, the simulator will run until user exit.
